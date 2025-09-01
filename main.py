@@ -1,4 +1,9 @@
-# main.py
+
+"""
+main.py
+Main script for the Higher or Lower Game.
+"""
+
 import random
 from data import data
 from art import logo
@@ -11,9 +16,11 @@ def get_random_entry(exclude=None):
 	return random.choice(choices)
 
 def format_entry(name, value):
+	"""Format the entry for display."""
 	return f"{name} (searched {value} times)"
 
 def play_game():
+	"""Main game loop for Higher or Lower."""
 	print(logo)
 	score = 0
 	game_should_continue = True
@@ -23,8 +30,13 @@ def play_game():
 		print(f"\nCompare A: {entry_a_name}")
 		print("vs")
 		print(f"Compare B: {entry_b_name}")
-		guess = input("Who has been searched more? Type 'A' or 'B': ").strip().lower()
-		if (entry_a_value > entry_b_value and guess == 'a') or (entry_b_value > entry_a_value and guess == 'b'):
+		guess = input(
+			"Who has been searched more? Type 'A' or 'B': "
+		).strip().lower()
+		if (
+			(entry_a_value > entry_b_value and guess == 'a') or
+			(entry_b_value > entry_a_value and guess == 'b')
+		):
 			score += 1
 			print(f"\nCorrect! Current score: {score}.")
 			if guess == 'a':
