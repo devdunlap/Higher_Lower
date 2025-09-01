@@ -1,6 +1,10 @@
-# art.py
+"""
+art.py
+ASCII art module for the Higher or Lower Game.
+"""
+
 # ASCII art for the Higher or Lower Game
-logo = r"""
+LOGO = r"""
  _    _ _     _     _                 ___                _                 
 | |  | (_)   | |   | |               |  _  |            | |                
 | |__| |_  __| | __| | ___  _ __ ___ | | | |_   _  ___  | |_ ___  _ __ ___ 

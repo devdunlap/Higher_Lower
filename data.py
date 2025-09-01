@@ -1,4 +1,8 @@
-# data.py
+"""
+data.py
+Data module containing search count information for the Higher or Lower Game.
+"""
+
 # Dictionary of names (person, place, or thing) mapped to their search count
 data = {
 	"Taylor Swift": 950,

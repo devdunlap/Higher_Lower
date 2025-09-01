@@ -6,7 +6,7 @@ Main script for the Higher or Lower Game.
 
 import random
 from data import data
-from art import logo
+from art import LOGO
 
 def get_random_entry(exclude=None):
     """Return a random (name, value) tuple from data, excluding a specific name if provided."""
@@ -21,7 +21,7 @@ def format_entry(name, value):
 
 def play_game():
     """Main game loop for Higher or Lower."""
-    print(logo)
+    print(LOGO)
     score = 0
     game_should_continue = True
     entry_a_name, entry_a_value = get_random_entry()
