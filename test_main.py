@@ -44,5 +44,13 @@ class TestMain(unittest.TestCase):
         result = format_entry('Test', 123)
         self.assertEqual(result, 'Test (searched 123 times)')
 
+    def test_get_random_entry_returns_different_entries(self):
+        # Ensure that with enough calls, we get all possible entries (except excluded)
+        found = set()
+        for _ in range(100):
+            name, _ = get_random_entry()
+            found.add(name)
+        self.assertTrue(set(test_data.keys()).issubset(found))
+
 if __name__ == '__main__':
     unittest.main()
