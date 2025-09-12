@@ -52,5 +52,16 @@ class TestMain(unittest.TestCase):
             found.add(name)
         self.assertTrue(set(test_data.keys()).issubset(found))
 
+    def test_get_random_entry_with_all_but_one_excluded(self):
+        # Exclude all but one entry, should always return the remaining one
+        keys = list(test_data.keys())
+        for i in range(len(keys)):
+            exclude_keys = set(keys) - {keys[i]}
+            # Exclude all except keys[i]
+            with patch('main.data', {keys[i]: test_data[keys[i]]}):
+                name, value = main.get_random_entry()
+                self.assertEqual(name, keys[i])
+                self.assertEqual(value, test_data[keys[i]])
+
 if __name__ == '__main__':
     unittest.main()
