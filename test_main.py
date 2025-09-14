@@ -1,7 +1,7 @@
 """ Unit tests for the Higher Lower game """
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, call
 import main
 
 # Sample data for testing
@@ -56,6 +56,19 @@ class TestMain(unittest.TestCase):
                 name, value = main.get_random_entry()
                 self.assertEqual(name, key)
                 self.assertEqual(value, test_data[key])
+
+    def test_play_game_correct_and_incorrect_guess(self):
+        """Test play_game logic for correct and incorrect guesses using mocks."""
+        # Patch input to simulate user guesses: first correct, then incorrect
+        with patch('builtins.input', side_effect=['a', 'b']), \
+             patch('main.get_random_entry', side_effect=[('A', 200), ('B', 100), ('C', 50)]), \
+             patch('main.LOGO', "LOGO"), \
+             patch('builtins.print') as mock_print:
+            main.play_game()
+            # Check that print was called with correct and final score
+            printed = [call.args[0] for call in mock_print.call_args_list]
+            self.assertTrue(any("Correct! Current score: 1." in s for s in printed))
+            self.assertTrue(any("Sorry, that's wrong. Final score: 1." in s for s in printed))
 
 if __name__ == '__main__':
     unittest.main()
