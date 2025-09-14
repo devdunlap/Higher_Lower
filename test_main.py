@@ -1,7 +1,7 @@
 """ Unit tests for the Higher Lower game """
 
 import unittest
-from unittest.mock import patch, call
+from unittest.mock import patch
 import main
 
 # Sample data for testing
@@ -66,7 +66,7 @@ class TestMain(unittest.TestCase):
              patch('builtins.print') as mock_print:
             main.play_game()
             # Check that print was called with correct and final score
-            printed = [call.args[0] for call in mock_print.call_args_list]
+            printed = [args[0] for args, _ in mock_print.call_args_list]
             self.assertTrue(any("Correct! Current score: 1." in s for s in printed))
             self.assertTrue(any("Sorry, that's wrong. Final score: 1." in s for s in printed))
 
